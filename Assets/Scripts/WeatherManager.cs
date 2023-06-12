@@ -6,6 +6,10 @@ using UnityEngine.Rendering.PostProcessing;
 
 public class WeatherManager : MonoBehaviour
 {
+    public GameObject SnowObj;
+    public GameObject RainObj;
+    public GameObject MistObj;
+
     Material sbMaterial;
     private PostProcessVolume ppVolume;
     private Vignette vignette;
@@ -70,7 +74,7 @@ public class WeatherManager : MonoBehaviour
         }
     }
 
-    private void UpdateTempBri(Vector2 tbVector)
+    public void UpdateTempBri(Vector2 tbVector)
     {
         ppVolume.profile.TryGetSettings(out vignette);
 
@@ -99,6 +103,34 @@ public class WeatherManager : MonoBehaviour
     public void Test()
     {
         UpdateTempBri(tbGrade);
+    }
+
+    public void Clear()
+    {
+        SnowObj.SetActive(false);
+        RainObj.SetActive(false);
+        MistObj.SetActive(false);
+    }
+
+    public void Rain()
+    {
+        SnowObj.SetActive(false);
+        RainObj.SetActive(true);
+        MistObj.SetActive(false);
+    }
+
+    public void Snow()
+    {
+        SnowObj.SetActive(true);
+        RainObj.SetActive(false);
+        MistObj.SetActive(false);
+    }
+
+    public void Mist()
+    {
+        SnowObj.SetActive(false);
+        RainObj.SetActive(false);
+        MistObj.SetActive(true);
     }
 
 }
